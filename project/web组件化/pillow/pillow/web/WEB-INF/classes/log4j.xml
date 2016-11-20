@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %X{userIP} %X{userName} [%-5p] %x %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<!--param name="LevelMax" value="INFO" / -->
+		</filter>
+	</appender>
+
+	<appender name="ROOTLOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/numen_plus.log" />
+		<param name="Append" value="true" />
+		<!-- <param name="BufferedIO" value="true"/> -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %X{userIP} %X{userName} [%-5p] %x %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<!-- <param name="LevelMax" value="" /> -->
+		</filter>
+	</appender>
+
+	<appender name="DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/numen_plus_debug.log" />
+		<param name="Append" value="true" />
+		<!-- <param name="BufferedIO" value="true"/> -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %X{userIP} %X{userName} [%-5p] %x %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/numen_plus_info.log" />
+		<param name="Append" value="true" />
+		<!-- <param name="BufferedIO" value="true"/> -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %X{userIP} %X{userName} [%-5p] %x %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<appender name="WARN" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/numen_plus_warn.log" />
+		<param name="Append" value="true" />
+		<!-- <param name="BufferedIO" value="true"/> -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %X{userIP} %X{userName} [%-5p] %x %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/numen_plus_error.log" />
+		<param name="Append" value="true" />
+		<!-- <param name="BufferedIO" value="true"/> -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %X{userIP} %X{userName} [%-5p] %x %l - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<!-- <param name="LevelMax" value="ERROR" /> -->
+		</filter>
+	</appender>
+
+	<category name="com.ibatis">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="com.ibatis.common.jdbc.SimpleDataSource">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="com.ibatis.common.jdbc.ScriptRunner">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="java.sql.Connection">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="java.sql.Statement">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="java.sql.PreparedStatement">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="java.sql.ResultSet">
+		<priority value="DEBUG" />
+	</category>
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="DEBUG" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ROOTLOG" />
+		<appender-ref ref="WARN" />
+		<appender-ref ref="ERROR" />
+	</root>
+
+</log4j:configuration>

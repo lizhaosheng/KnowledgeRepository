@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+pillow.xml的解析验证xsd文档。
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns="https://numen.yixin.im/schema/pillow"
+			targetNamespace="https://numen.yixin.im/schema/pillow">
+	
+	<!-- 组件名参数格式定义 -->
+	<xs:simpleType name="pillowNameType">   
+		<xs:restriction base="xs:ID">
+			<xs:maxLength value="50"/>
+			<!-- 字母或下划线开头，后面跟字母或数字或下划线或横杠的 -->
+	    	<xs:pattern value="([a-zA-Z]|_)([a-zA-Z0-9]|_|-)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- 参数类型格式定义 -->
+	<xs:complexType name="paramType">
+		<!-- 名称节点，最长50个字符，字母或下划线开头，字母数字和下划和-线组成 -->
+		<xs:sequence>
+			<xs:element name="param-name" type="xs:string"/>
+			<xs:element name="param-value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- 上下文类型格式定义 -->
+	<xs:complexType name="contextType">
+		<!-- 名称节点，最长50个字符，字母或下划线开头，字母数字和下划和-线组成 -->
+		<xs:sequence>
+			<xs:element name="context-param" type="paramType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- dispatcher类型格式定义 -->
+	<xs:complexType name="dispatcherType">
+		<!-- 名称节点，最长50个字符，字母或下划线开头，字母数字和下划和-线组成 -->
+		<xs:sequence>
+			<xs:element name="init-param" type="paramType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="url-pattern" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+			
+	<!-- 组件定义 -->
+	<xs:complexType name="pillowType">
+		<xs:all minOccurs="0">
+			<xs:element name="parent" type="pillowNameType"/>
+			<xs:element name="context" type="contextType"/>
+			<xs:element name="servlet" type="dispatcherType"/>
+		</xs:all>
+		<!-- 名称属性，最长50个字符，字母或下划线开头，字母数字和下划和-线组成 -->
+		<xs:attribute name="name" type="pillowNameType" use="required "/>
+	</xs:complexType>
+	
+	<!-- 组件集合 -->
+	<xs:element name="pillowsaaa">
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:element name="pillowxxx" type="pillowType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+			
+</xs:schema>

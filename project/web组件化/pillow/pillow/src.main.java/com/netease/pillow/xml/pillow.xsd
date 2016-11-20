@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+pillow.xml的解析验证xsd文档。
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns="https://numen.yixin.im/schema/pillow"
+			targetNamespace="https://numen.yixin.im/schema/pillow">
+	
+	<xs:element name="parent" type="pillowNameType"/>
+	<xs:element name="context-param" type="paramType"/>
+	<xs:element name="init-param" type="paramType"/>
+	<xs:element name="url-pattern" type="xs:token"/>
+	<xs:element name="param-name" type="xs:token"/>
+	<xs:element name="param-value" type="xs:token"/>
+	
+	<!-- 组件名参数格式定义 -->
+	<xs:simpleType name="pillowNameType">   
+		<xs:restriction base="xs:ID">
+			<xs:maxLength value="50"/>
+			<!-- 字母或下划线开头，后面跟字母或数字或下划线或横杠的 -->
+	    	<xs:pattern value="([a-zA-Z]|_)([a-zA-Z0-9]|_|-)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!-- 参数类型格式定义 -->
+	<xs:complexType name="paramType">
+		<!-- 名称节点，最长50个字符，字母或下划线开头，字母数字和下划和-线组成 -->
+		<xs:sequence>
+			<xs:element ref="param-name" />
+			<xs:element ref="param-value" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<!-- 组件集合 -->
+	<xs:element name="pillows">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="pillow" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+	
+	<!-- 组件定义 -->
+	<xs:element name="pillow">
+		<xs:complexType >
+			<xs:all>
+				<xs:element ref="parent" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="context" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="servlet" minOccurs="0" maxOccurs="1"/>
+			</xs:all>
+			<!-- 名称属性，最长50个字符，字母或下划线开头，字母数字和下划和-线组成 -->
+			<xs:attribute name="name" type="pillowNameType" use="required "/>
+			<xs:attribute name="canExtends" type="xs:boolean" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- 上下文类型格式定义 -->
+	<xs:element name="context">
+		<xs:complexType>
+			<!-- 名称节点，最长50个字符，字母或下划线开头，字母数字和下划和-线组成 -->
+			<xs:sequence>
+				<xs:element ref="context-param" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- dispatcher类型格式定义 -->
+	<xs:element name="servlet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="init-param" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="url-pattern" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="useCommon" type="xs:boolean" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

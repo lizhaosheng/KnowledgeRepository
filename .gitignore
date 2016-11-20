@@ -1,0 +1,14 @@
+*.class
+# windows 临时文件
+.*
+!.gitignore
+# word 临时文件
+*/~*
+# word 临时文件
+*\~*
+# 快捷方式
+*.url
+/bin/
+/web/WEB-INF/classes/
+/target/
+temp/

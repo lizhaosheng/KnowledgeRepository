@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pillowsaaa xmlns="https://numen.yixin.im/schema/pillow"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="https://numen.yixin.im/schema/pillow https://numen.yixin.im/schema/pillow/pillow.xsd" >
+	<pillowxxx name="mypillow1">
+		<parent>
+			uuu
+		</parent>
+		<context>
+			<context-param>
+				<param-name>34</param-name>
+				<param-value>r</param-value>
+			</context-param>
+		</context>
+		<servlet>
+			<init-param>
+				<param-name>4</param-name>
+				<param-value>3</param-value>
+			</init-param>
+			<url-pattern>k</url-pattern>
+		</servlet>
+	</pillowxxx>
+</pillowsaaa>
