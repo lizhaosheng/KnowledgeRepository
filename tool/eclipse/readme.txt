@@ -1,1 +1,0 @@
-codetemplates.xml——打开Window->Preferences->Java->Code Style->Code Templates    点击"Import"，导入模板codetemplates.xml文件。
