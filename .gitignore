@@ -1,5 +1,5 @@
 *.class
-# windows 临时文件
+# 隐藏文件
 .*
 !.gitignore
 # word 临时文件
